@@ -4,8 +4,8 @@ import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { Link } from 'react-router-dom';
 
-// Tipi per gli articoli secondo la struttura dell'API
 interface Article {
   id: number;
   title: string;
@@ -45,17 +45,11 @@ const ListaArticoli = () => {
                     ? article.summary.slice(0, 100) + '...'
                     : article.summary}
                 </Card.Text>
-                <Card.Text> Pubblicato il: {new Date(article.published_at).toLocaleDateString()}</Card.Text>
-                <Card.Text> Aggiornato il: {new Date(article.updated_at).toLocaleDateString()}</Card.Text>
-
-                <Button
-                  variant="primary"
-                  href={article.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Leggi l'articolo
-                </Button>
+                <Card.Text>Pubblicato il: {new Date(article.published_at).toLocaleDateString()}</Card.Text>
+                <Card.Text>Aggiornato il: {new Date(article.updated_at).toLocaleDateString()}</Card.Text>
+                <Link to={`/articolo/${article.id}`}>
+                  <Button variant="primary">Leggi l'articolo</Button>
+                </Link>
               </Card.Body>
             </Card>
           </Col>
